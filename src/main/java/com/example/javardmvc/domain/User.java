@@ -1,5 +1,6 @@
 package com.example.javardmvc.domain;
 
+import static com.example.javardmvc.domain.Role.ADMIN;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.AUTO;
 
@@ -32,6 +33,10 @@ public class User implements UserDetails {
   @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
   @Enumerated(EnumType.STRING)
   private Set<Role> roles;
+
+  public boolean isAdmin() {
+    return roles.contains(ADMIN);
+  }
 
   public Long getId() {
     return id;
